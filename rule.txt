@@ -1,0 +1,34 @@
+LOAN RULE 1
+***********
+INSERT INTO rules
+ (rule_namespace , rule_id, condition,
+ action, priority, description)
+VALUES (
+ 'LOAN',
+ '1',
+ 'input.monthlySalary >= 50000 && input.creditScore >= 800 && input.requestedLoanAmount < 4000000',
+ 'output.setApprovalStatus(true);output.setSanctionedPercentage(90);output.setProcessingFees(8000);',
+ '1',
+ 'A person is eligible for Home loan?'
+);
+
+LOAN RULE 2
+***********
+INSERT INTO rules
+ (rule_namespace , rule_id, condition,
+ action, priority, description)
+VALUES (
+ 'LOAN',
+ '2',
+ 'input.monthlySalary >= 35000 && input.monthlySalary <= 50000 && input.creditScore <= 500 && input.requestedLoanAmount < 2000000',
+'output.setApprovalStatus(true);output.setSanctionedPercentage(60);output.setProcessingFees(2000);',
+ '2',
+ 'A person is eligible for Home loan?'
+);
+
+
+Request
+{
+ "creditScore": 900,
+ "monthlySalary": 70000.0
+}
